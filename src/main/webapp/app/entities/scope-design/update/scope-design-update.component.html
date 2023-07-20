@@ -1,0 +1,164 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-scope-design-heading"
+        data-cy="ScopeDesignCreateUpdateHeading"
+        jhiTranslate="mybujiApp.scopeDesign.home.createOrEditLabel"
+      >
+        Create or edit a Scope Design
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="mybujiApp.scopeDesign.designEstimate" for="field_designEstimate">Design Estimate</label>
+          <input
+            type="number"
+            class="form-control"
+            name="designEstimate"
+            id="field_designEstimate"
+            data-cy="designEstimate"
+            formControlName="designEstimate"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="mybujiApp.scopeDesign.codeEstimate" for="field_codeEstimate">Code Estimate</label>
+          <input
+            type="number"
+            class="form-control"
+            name="codeEstimate"
+            id="field_codeEstimate"
+            data-cy="codeEstimate"
+            formControlName="codeEstimate"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="mybujiApp.scopeDesign.syst1Estimate" for="field_syst1Estimate">Syst 1 Estimate</label>
+          <input
+            type="number"
+            class="form-control"
+            name="syst1Estimate"
+            id="field_syst1Estimate"
+            data-cy="syst1Estimate"
+            formControlName="syst1Estimate"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="mybujiApp.scopeDesign.syst2Estimate" for="field_syst2Estimate">Syst 2 Estimate</label>
+          <input
+            type="number"
+            class="form-control"
+            name="syst2Estimate"
+            id="field_syst2Estimate"
+            data-cy="syst2Estimate"
+            formControlName="syst2Estimate"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="mybujiApp.scopeDesign.qualEstimate" for="field_qualEstimate">Qual Estimate</label>
+          <input
+            type="number"
+            class="form-control"
+            name="qualEstimate"
+            id="field_qualEstimate"
+            data-cy="qualEstimate"
+            formControlName="qualEstimate"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="mybujiApp.scopeDesign.impEstimate" for="field_impEstimate">Imp Estimate</label>
+          <input
+            type="number"
+            class="form-control"
+            name="impEstimate"
+            id="field_impEstimate"
+            data-cy="impEstimate"
+            formControlName="impEstimate"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="mybujiApp.scopeDesign.postImpEstimate" for="field_postImpEstimate"
+            >Post Imp Estimate</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="postImpEstimate"
+            id="field_postImpEstimate"
+            data-cy="postImpEstimate"
+            formControlName="postImpEstimate"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="mybujiApp.scopeDesign.totalHours" for="field_totalHours">Total Hours</label>
+          <input
+            type="number"
+            class="form-control"
+            name="totalHours"
+            id="field_totalHours"
+            data-cy="totalHours"
+            formControlName="totalHours"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="mybujiApp.scopeDesign.workrequest" for="field_workrequest">Workrequest</label>
+          <select
+            class="form-control"
+            id="field_workrequest"
+            data-cy="workrequest"
+            name="workrequest"
+            formControlName="workrequest"
+            [compareWith]="compareWorkRequest"
+          >
+            <option *ngIf="!editForm.get('workrequest')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="workRequestOption" *ngFor="let workRequestOption of workRequestsSharedCollection">
+              {{ workRequestOption.projectId }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="editForm.get(['workrequest'])!.invalid && (editForm.get(['workrequest'])!.dirty || editForm.get(['workrequest'])!.touched)"
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['workrequest'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

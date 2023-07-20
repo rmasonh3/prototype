@@ -1,0 +1,30 @@
+{
+  "mybujiApp": {
+    "costingPercentages": {
+      "home": {
+        "title": "Costing Percentages",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Costing Percentages",
+        "createOrEditLabel": "Crear o editar Costing Percentages",
+        "search": "Buscar Costing Percentages",
+        "notFound": "Ningún Costing Percentages encontrado"
+      },
+      "created": "Un nuevo Costing Percentages ha sido creado con el identificador {{ param }}",
+      "updated": "Un Costing Percentages ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Costing Percentages ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Costing Percentages {{ id }}?"
+      },
+      "detail": {
+        "title": "Costing Percentages"
+      },
+      "id": "ID",
+      "costingSystem": "Costing System",
+      "costingQual": "Costing Qual",
+      "costingImp": "Costing Imp",
+      "costingPostImp": "Costing Post Imp",
+      "active": "Active",
+      "dateAdded": "Date Added"
+    }
+  }
+}

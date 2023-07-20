@@ -1,0 +1,245 @@
+/**
+* This effort is developed to replace existing estimating database built with access using jhipster to create
+* vue app with initial postgres backend with Vue Frontend.
+* Code is generated from this .jdl file relying on jhipster plugin for intellij to visually inspect entities
+* as design tool similar to uml.
+* First iteration and or version 1.0 of myEstimator ~ RMH.(x0up)
+*/
+
+
+
+/** Entity User */
+entity User {
+  login String required
+
+}
+
+
+/* Entities for Scope Design Estimating Database version 1.0 */
+
+/** Entity Estimate Design  */
+entity EstimateDesign {
+  qpproachNumber Float required
+  complexity Complexity,
+
+
+}
+
+/** Entity Scope Design */
+
+entity ScopeDesign {
+  designEstimate Float
+  codeEstimate Float
+  syst1Estimate Float
+  syst2Estimate Float
+  qualEstimate Float
+  impEstimate Float
+  postImpEstimate Float
+  totalHours Float
+}
+
+/** Entity Work Request Info --> note possible chart future iteration */
+entity WorkInfo {
+  scopeAct Float required
+  designAct Float required
+  codeAct Float required
+  syst1Act Float required
+  syst2Act Float required
+  qualAct Float required
+  impAct Float required
+  postImpAct Float required
+  totalAct Float required
+
+}
+
+/** Entity Estimate Basis */
+
+entity EstimateBasis {
+  subsystemId Integer required
+  basisOfEstimate TextBlob required
+  assumptions TextBlob required
+  lastUpdate Instant required
+}
+
+/** Entity Costing Percentages */
+
+entity CostingPercentages {
+  costingSystem Integer required
+  costingQual Integer required
+  costingImp Integer required
+  costingPostImp Integer required
+  active Boolean
+  dateAdded Instant required
+}
+
+/** Enum Department */
+
+enum Department {
+  SSD,
+  PGBA_Client,
+  PGBA_Support,
+  PGBA_Applications,
+  PGBA_PMO,
+  PGBA_Business_Support,
+  Leveraged_Systems,
+  QA,
+  LOB_Manager,
+  RSET,
+  ICT,
+  PAS
+
+
+}
+
+/** Enum  for Element Type */
+
+enum Type{
+  New,
+  Modify,
+  Regen
+}
+
+/** Entity Element Type */
+entity ElementTypes {
+  Element UUID required unique
+  Type Type
+}
+
+/** Entity Complexity  */
+
+enum Complexity {
+  Easy,
+  Average,
+  Complex
+}
+
+/** Entity Work Request */
+
+entity WorkRequest {
+  projectId String unique required
+  workRequest String required
+  workRequestDescription String required
+  workRwquestPhase String required
+  startDate Instant required
+  endDate Instant required
+  status ProjectStatus
+  design DesignStatus
+}
+
+/** Entity Employee  */
+
+entity Employee {
+  employeeId String required
+  firstName String required
+  lastName String required
+  //role Role required
+  email String required pattern(/^[^@\s]+@[^@\s]+\.[^@\s]+$/)
+  phone String required
+  department Department
+  role Role
+}
+
+/** Entity Manager  */
+/*
+
+entity Manager {
+mngr_cd String required
+
+}
+*/
+/** Enum Role*/
+enum Role {
+  Admin,
+  Project_Owner,
+  Project_Manager,
+  App_Director,
+  Manager,
+  App_Design_Architect,
+  Systems_Designer,
+  Team_Lead,
+  Business_Systems_Analyst,
+  Systems_Expert,
+  Test_Designer,
+  Usability_Designer,
+  Systems_Analyst,
+  Systems_Expert,
+  Software_Designer,
+  Software_Developer,
+  Technical_Writer,
+  Tester
+}
+
+
+/* TODO maybe add later
+entity Project {
+projectId String unique required
+placedDate Instant required
+status ProjectStatus required
+}*/
+
+
+/** Enum Project Status */
+enum ProjectStatus {
+  Pending,
+  InProgress,
+  OnHold,
+  Completed,
+  Canceled
+}
+
+/*entity Design {
+quantity Integer required min(0)
+totalPrice BigDecimal required min(0)
+status OrderItemStatus required
+}*/
+
+/** Enum Design Status*/
+
+enum DesignStatus {
+  Pending,
+  InProgress,
+  OnHold,
+  Completed,
+  Canceled
+}
+
+/** Relationsships */
+
+/**  One To One */
+
+relationship OneToOne {
+  Employee{user(login) required} to User,
+  WorkInfo{workrequest(projectId) required} to WorkRequest,
+  ScopeDesign{workrequest(projectId) required} to WorkRequest,
+  EstimateBasis{workrequest(projectId) required} to WorkRequest,
+  EstimateDesign{workrequest(projectId) required} to WorkRequest,
+  EstimateDesign{elementtypes(element) required} to ElementTypes
+
+}
+
+relationship ManyToOne {
+  Employee{workrequest(projectID) required} to WorkRequest{employee(employeeId) required}
+}
+
+
+
+/*}
+relationship ManyToMany {
+
+
+
+}*/
+
+  /** Many TO One */
+
+/*
+relationship OneToMany {
+
+
+}*/
+/** Service */
+service * with serviceClass
+
+/**  Pagination */
+paginate WorkRequest, Employee, ScopeDesign, EstimateDesign, EstimateBasis, WorkInfo, EstimateDesign with pagination
+

@@ -1,0 +1,66 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="scopeDesign">
+      <h2 data-cy="scopeDesignDetailsHeading"><span jhiTranslate="mybujiApp.scopeDesign.detail.title">Scope Design</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ scopeDesign.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="mybujiApp.scopeDesign.designEstimate">Design Estimate</span></dt>
+        <dd>
+          <span>{{ scopeDesign.designEstimate }}</span>
+        </dd>
+        <dt><span jhiTranslate="mybujiApp.scopeDesign.codeEstimate">Code Estimate</span></dt>
+        <dd>
+          <span>{{ scopeDesign.codeEstimate }}</span>
+        </dd>
+        <dt><span jhiTranslate="mybujiApp.scopeDesign.syst1Estimate">Syst 1 Estimate</span></dt>
+        <dd>
+          <span>{{ scopeDesign.syst1Estimate }}</span>
+        </dd>
+        <dt><span jhiTranslate="mybujiApp.scopeDesign.syst2Estimate">Syst 2 Estimate</span></dt>
+        <dd>
+          <span>{{ scopeDesign.syst2Estimate }}</span>
+        </dd>
+        <dt><span jhiTranslate="mybujiApp.scopeDesign.qualEstimate">Qual Estimate</span></dt>
+        <dd>
+          <span>{{ scopeDesign.qualEstimate }}</span>
+        </dd>
+        <dt><span jhiTranslate="mybujiApp.scopeDesign.impEstimate">Imp Estimate</span></dt>
+        <dd>
+          <span>{{ scopeDesign.impEstimate }}</span>
+        </dd>
+        <dt><span jhiTranslate="mybujiApp.scopeDesign.postImpEstimate">Post Imp Estimate</span></dt>
+        <dd>
+          <span>{{ scopeDesign.postImpEstimate }}</span>
+        </dd>
+        <dt><span jhiTranslate="mybujiApp.scopeDesign.totalHours">Total Hours</span></dt>
+        <dd>
+          <span>{{ scopeDesign.totalHours }}</span>
+        </dd>
+        <dt><span jhiTranslate="mybujiApp.scopeDesign.workrequest">Workrequest</span></dt>
+        <dd>
+          <div *ngIf="scopeDesign.workrequest">
+            <a [routerLink]="['/work-request', scopeDesign.workrequest.id, 'view']">{{ scopeDesign.workrequest.projectId }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/scope-design', scopeDesign.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

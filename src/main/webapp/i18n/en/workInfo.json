@@ -1,0 +1,34 @@
+{
+  "mybujiApp": {
+    "workInfo": {
+      "home": {
+        "title": "Work Infos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Work Info",
+        "createOrEditLabel": "Create or edit a Work Info",
+        "search": "Search for Work Info",
+        "notFound": "No Work Infos found"
+      },
+      "created": "A new Work Info is created with identifier {{ param }}",
+      "updated": "A Work Info is updated with identifier {{ param }}",
+      "deleted": "A Work Info is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Work Info {{ id }}?"
+      },
+      "detail": {
+        "title": "Work Info"
+      },
+      "id": "ID",
+      "scopeAct": "Scope Act",
+      "designAct": "Design Act",
+      "codeAct": "Code Act",
+      "syst1Act": "Syst 1 Act",
+      "syst2Act": "Syst 2 Act",
+      "qualAct": "Qual Act",
+      "impAct": "Imp Act",
+      "postImpAct": "Post Imp Act",
+      "totalAct": "Total Act",
+      "workrequest": "Workrequest"
+    }
+  }
+}

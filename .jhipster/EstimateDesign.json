@@ -1,0 +1,45 @@
+{
+  "applications": "*",
+  "changelogDate": "20230720190648",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "estimate_design",
+  "fields": [
+    {
+      "fieldName": "qpproachNumber",
+      "fieldType": "Float",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "complexity",
+      "fieldType": "Complexity",
+      "fieldTypeJavadoc": "Entity Complexity",
+      "fieldValues": "Easy,Average,Complex"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "Entity Estimate Design",
+  "jpaMetamodelFiltering": false,
+  "name": "EstimateDesign",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "projectId",
+      "otherEntityName": "workRequest",
+      "ownerSide": true,
+      "relationshipName": "workrequest",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "element",
+      "otherEntityName": "elementTypes",
+      "ownerSide": true,
+      "relationshipName": "elementtypes",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "serviceClass"
+}

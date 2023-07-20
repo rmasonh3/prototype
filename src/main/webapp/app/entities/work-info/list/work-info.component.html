@@ -1,0 +1,197 @@
+<div>
+  <h2 id="page-heading" data-cy="WorkInfoHeading">
+    <span jhiTranslate="mybujiApp.workInfo.home.title">Work Infos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="mybujiApp.workInfo.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-work-info"
+        [routerLink]="['/work-info/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span class="hidden-sm-down" jhiTranslate="mybujiApp.workInfo.home.createLabel"> Create a new Work Info </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <form name="searchForm" class="row row-cols-sm-auto align-items-center">
+    <div class="col-sm-12">
+      <div class="input-group w-100 mt-3">
+        <label class="visually-hidden" for="currentSearch" jhiTranslate="mybujiApp.workInfo.home.search">Search for Work Info</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="currentSearch"
+          id="currentSearch"
+          name="currentSearch"
+          placeholder="{{ 'mybujiApp.workInfo.home.search' | translate }}"
+        />
+
+        <button class="btn btn-info" (click)="search(currentSearch)">
+          <fa-icon icon="search"></fa-icon>
+        </button>
+
+        <button class="btn btn-danger" (click)="search('')" *ngIf="currentSearch">
+          <fa-icon icon="trash-alt"></fa-icon>
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="workInfos?.length === 0">
+    <span jhiTranslate="mybujiApp.workInfo.home.notFound">No Work Infos found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="workInfos && workInfos.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="scopeAct">
+            <div class="d-flex">
+              <span jhiTranslate="mybujiApp.workInfo.scopeAct">Scope Act</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="designAct">
+            <div class="d-flex">
+              <span jhiTranslate="mybujiApp.workInfo.designAct">Design Act</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="codeAct">
+            <div class="d-flex">
+              <span jhiTranslate="mybujiApp.workInfo.codeAct">Code Act</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="syst1Act">
+            <div class="d-flex">
+              <span jhiTranslate="mybujiApp.workInfo.syst1Act">Syst 1 Act</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="syst2Act">
+            <div class="d-flex">
+              <span jhiTranslate="mybujiApp.workInfo.syst2Act">Syst 2 Act</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="qualAct">
+            <div class="d-flex">
+              <span jhiTranslate="mybujiApp.workInfo.qualAct">Qual Act</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="impAct">
+            <div class="d-flex">
+              <span jhiTranslate="mybujiApp.workInfo.impAct">Imp Act</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="postImpAct">
+            <div class="d-flex">
+              <span jhiTranslate="mybujiApp.workInfo.postImpAct">Post Imp Act</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="totalAct">
+            <div class="d-flex">
+              <span jhiTranslate="mybujiApp.workInfo.totalAct">Total Act</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="workrequest.projectId">
+            <div class="d-flex">
+              <span jhiTranslate="mybujiApp.workInfo.workrequest">Workrequest</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let workInfo of workInfos; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/work-info', workInfo.id, 'view']">{{ workInfo.id }}</a>
+          </td>
+          <td>{{ workInfo.scopeAct }}</td>
+          <td>{{ workInfo.designAct }}</td>
+          <td>{{ workInfo.codeAct }}</td>
+          <td>{{ workInfo.syst1Act }}</td>
+          <td>{{ workInfo.syst2Act }}</td>
+          <td>{{ workInfo.qualAct }}</td>
+          <td>{{ workInfo.impAct }}</td>
+          <td>{{ workInfo.postImpAct }}</td>
+          <td>{{ workInfo.totalAct }}</td>
+          <td>
+            <div *ngIf="workInfo.workrequest">
+              <a [routerLink]="['/work-request', workInfo.workrequest.id, 'view']">{{ workInfo.workrequest.projectId }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/work-info', workInfo.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/work-info', workInfo.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(workInfo)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="workInfos && workInfos.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

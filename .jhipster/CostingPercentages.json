@@ -1,0 +1,46 @@
+{
+  "applications": "*",
+  "changelogDate": "20230720190652",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "costing_percentages",
+  "fields": [
+    {
+      "fieldName": "costingSystem",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "costingQual",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "costingImp",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "costingPostImp",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "active",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "dateAdded",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "Entity Costing Percentages",
+  "jpaMetamodelFiltering": false,
+  "name": "CostingPercentages",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceClass"
+}

@@ -1,0 +1,11 @@
+id;subsystem_id;basis_of_estimate;assumptions;last_update;workrequest_id
+1;13299;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;2023-07-20T00:58:14;1
+2;86830;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;2023-07-20T02:21:18;2
+3;64713;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;2023-07-20T17:10:44;3
+4;74711;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;2023-07-20T16:10:40;4
+5;7970;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;2023-07-19T20:19:50;5
+6;8542;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;2023-07-20T00:57:24;6
+7;16372;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;2023-07-19T22:54:16;7
+8;65479;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;2023-07-20T09:58:58;8
+9;15192;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;2023-07-20T07:06:34;9
+10;12531;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.txt;2023-07-20T16:31:53;10

@@ -1,0 +1,72 @@
+{
+  "applications": "*",
+  "changelogDate": "20230720190655",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "employee",
+  "fields": [
+    {
+      "fieldName": "employeeId",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "firstName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "lastName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "pattern"],
+      "fieldValidateRulesPattern": "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$"
+    },
+    {
+      "fieldName": "phone",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "department",
+      "fieldType": "Department",
+      "fieldTypeJavadoc": "Enum Department",
+      "fieldValues": "SSD,PGBA_Client,PGBA_Support,PGBA_Applications,PGBA_PMO,PGBA_Business_Support,Leveraged_Systems,QA,LOB_Manager,RSET,ICT,PAS"
+    },
+    {
+      "fieldName": "role",
+      "fieldType": "Role",
+      "fieldTypeJavadoc": "Enum Role",
+      "fieldValues": "Admin,Project_Owner,Project_Manager,App_Director,Manager,App_Design_Architect,Systems_Designer,Team_Lead,Business_Systems_Analyst,Systems_Expert,Test_Designer,Usability_Designer,Systems_Analyst,Software_Designer,Software_Developer,Technical_Writer,Tester"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "Entity Employee",
+  "jpaMetamodelFiltering": false,
+  "name": "Employee",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "ownerSide": true,
+      "relationshipName": "user",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "projectID",
+      "otherEntityName": "workRequest",
+      "otherEntityRelationshipName": "employee",
+      "relationshipName": "workrequest",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "serviceClass"
+}

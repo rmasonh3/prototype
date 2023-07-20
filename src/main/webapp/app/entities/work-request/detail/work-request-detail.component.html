@@ -1,0 +1,60 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="workRequest">
+      <h2 data-cy="workRequestDetailsHeading"><span jhiTranslate="mybujiApp.workRequest.detail.title">Work Request</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ workRequest.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="mybujiApp.workRequest.projectId">Project Id</span></dt>
+        <dd>
+          <span>{{ workRequest.projectId }}</span>
+        </dd>
+        <dt><span jhiTranslate="mybujiApp.workRequest.workRequest">Work Request</span></dt>
+        <dd>
+          <span>{{ workRequest.workRequest }}</span>
+        </dd>
+        <dt><span jhiTranslate="mybujiApp.workRequest.workRequestDescription">Work Request Description</span></dt>
+        <dd>
+          <span>{{ workRequest.workRequestDescription }}</span>
+        </dd>
+        <dt><span jhiTranslate="mybujiApp.workRequest.workRwquestPhase">Work Rwquest Phase</span></dt>
+        <dd>
+          <span>{{ workRequest.workRwquestPhase }}</span>
+        </dd>
+        <dt><span jhiTranslate="mybujiApp.workRequest.startDate">Start Date</span></dt>
+        <dd>
+          <span>{{ workRequest.startDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="mybujiApp.workRequest.endDate">End Date</span></dt>
+        <dd>
+          <span>{{ workRequest.endDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="mybujiApp.workRequest.status">Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'mybujiApp.ProjectStatus.' + workRequest.status }}">{{ workRequest.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="mybujiApp.workRequest.design">Design</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'mybujiApp.DesignStatus.' + workRequest.design }}">{{ workRequest.design }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/work-request', workRequest.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="estimateBasis">
+      <h2 data-cy="estimateBasisDetailsHeading"><span jhiTranslate="mybujiApp.estimateBasis.detail.title">Estimate Basis</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ estimateBasis.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="mybujiApp.estimateBasis.subsystemId">Subsystem Id</span></dt>
+        <dd>
+          <span>{{ estimateBasis.subsystemId }}</span>
+        </dd>
+        <dt><span jhiTranslate="mybujiApp.estimateBasis.basisOfEstimate">Basis Of Estimate</span></dt>
+        <dd>
+          <span>{{ estimateBasis.basisOfEstimate }}</span>
+        </dd>
+        <dt><span jhiTranslate="mybujiApp.estimateBasis.assumptions">Assumptions</span></dt>
+        <dd>
+          <span>{{ estimateBasis.assumptions }}</span>
+        </dd>
+        <dt><span jhiTranslate="mybujiApp.estimateBasis.lastUpdate">Last Update</span></dt>
+        <dd>
+          <span>{{ estimateBasis.lastUpdate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="mybujiApp.estimateBasis.workrequest">Workrequest</span></dt>
+        <dd>
+          <div *ngIf="estimateBasis.workrequest">
+            <a [routerLink]="['/work-request', estimateBasis.workrequest.id, 'view']">{{ estimateBasis.workrequest.projectId }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/estimate-basis', estimateBasis.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

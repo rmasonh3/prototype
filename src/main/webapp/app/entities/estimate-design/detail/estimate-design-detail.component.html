@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="estimateDesign">
+      <h2 data-cy="estimateDesignDetailsHeading"><span jhiTranslate="mybujiApp.estimateDesign.detail.title">Estimate Design</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ estimateDesign.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="mybujiApp.estimateDesign.qpproachNumber">Qpproach Number</span></dt>
+        <dd>
+          <span>{{ estimateDesign.qpproachNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="mybujiApp.estimateDesign.complexity">Complexity</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'mybujiApp.Complexity.' + estimateDesign.complexity }}">{{ estimateDesign.complexity }}</span>
+        </dd>
+        <dt><span jhiTranslate="mybujiApp.estimateDesign.workrequest">Workrequest</span></dt>
+        <dd>
+          <div *ngIf="estimateDesign.workrequest">
+            <a [routerLink]="['/work-request', estimateDesign.workrequest.id, 'view']">{{ estimateDesign.workrequest.projectId }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="mybujiApp.estimateDesign.elementtypes">Elementtypes</span></dt>
+        <dd>
+          <div *ngIf="estimateDesign.elementtypes">
+            <a [routerLink]="['/element-types', estimateDesign.elementtypes.id, 'view']">{{ estimateDesign.elementtypes.element }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/estimate-design', estimateDesign.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+{
+  "applications": "*",
+  "changelogDate": "20230720190651",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "estimate_basis",
+  "fields": [
+    {
+      "fieldName": "subsystemId",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "basisOfEstimate",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "assumptions",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "lastUpdate",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "Entity Estimate Basis",
+  "jpaMetamodelFiltering": false,
+  "name": "EstimateBasis",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "projectId",
+      "otherEntityName": "workRequest",
+      "ownerSide": true,
+      "relationshipName": "workrequest",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "serviceClass"
+}

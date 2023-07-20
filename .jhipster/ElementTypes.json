@@ -1,0 +1,28 @@
+{
+  "applications": "*",
+  "changelogDate": "20230720190653",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "element_types",
+  "fields": [
+    {
+      "fieldName": "element",
+      "fieldType": "UUID",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "Type",
+      "fieldTypeJavadoc": "Enum  for Element Type",
+      "fieldValues": "New,Modify,Regen"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "Entity Element Type",
+  "jpaMetamodelFiltering": false,
+  "name": "ElementTypes",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceClass"
+}

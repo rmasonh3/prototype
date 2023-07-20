@@ -1,0 +1,33 @@
+{
+  "mybujiApp": {
+    "scopeDesign": {
+      "home": {
+        "title": "Scope Designs",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Scope Design",
+        "createOrEditLabel": "Create or edit a Scope Design",
+        "search": "Search for Scope Design",
+        "notFound": "No Scope Designs found"
+      },
+      "created": "A new Scope Design is created with identifier {{ param }}",
+      "updated": "A Scope Design is updated with identifier {{ param }}",
+      "deleted": "A Scope Design is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Scope Design {{ id }}?"
+      },
+      "detail": {
+        "title": "Scope Design"
+      },
+      "id": "ID",
+      "designEstimate": "Design Estimate",
+      "codeEstimate": "Code Estimate",
+      "syst1Estimate": "Syst 1 Estimate",
+      "syst2Estimate": "Syst 2 Estimate",
+      "qualEstimate": "Qual Estimate",
+      "impEstimate": "Imp Estimate",
+      "postImpEstimate": "Post Imp Estimate",
+      "totalHours": "Total Hours",
+      "workrequest": "Workrequest"
+    }
+  }
+}

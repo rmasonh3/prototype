@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity EstimateDesign.
+    -->
+    <changeSet id="20230720190648-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="workrequest_id"
+                                 baseTableName="estimate_design"
+                                 constraintName="fk_estimate_design__workrequest_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="work_request"/>
+
+        <addForeignKeyConstraint baseColumnNames="elementtypes_id"
+                                 baseTableName="estimate_design"
+                                 constraintName="fk_estimate_design__elementtypes_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="element_types"/>
+    </changeSet>
+</databaseChangeLog>

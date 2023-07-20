@@ -1,0 +1,161 @@
+<div>
+  <h2 id="page-heading" data-cy="EstimateDesignHeading">
+    <span jhiTranslate="mybujiApp.estimateDesign.home.title">Estimate Designs</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="mybujiApp.estimateDesign.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-estimate-design"
+        [routerLink]="['/estimate-design/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span class="hidden-sm-down" jhiTranslate="mybujiApp.estimateDesign.home.createLabel"> Create a new Estimate Design </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <form name="searchForm" class="row row-cols-sm-auto align-items-center">
+    <div class="col-sm-12">
+      <div class="input-group w-100 mt-3">
+        <label class="visually-hidden" for="currentSearch" jhiTranslate="mybujiApp.estimateDesign.home.search"
+          >Search for Estimate Design</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="currentSearch"
+          id="currentSearch"
+          name="currentSearch"
+          placeholder="{{ 'mybujiApp.estimateDesign.home.search' | translate }}"
+        />
+
+        <button class="btn btn-info" (click)="search(currentSearch)">
+          <fa-icon icon="search"></fa-icon>
+        </button>
+
+        <button class="btn btn-danger" (click)="search('')" *ngIf="currentSearch">
+          <fa-icon icon="trash-alt"></fa-icon>
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="estimateDesigns?.length === 0">
+    <span jhiTranslate="mybujiApp.estimateDesign.home.notFound">No Estimate Designs found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="estimateDesigns && estimateDesigns.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="qpproachNumber">
+            <div class="d-flex">
+              <span jhiTranslate="mybujiApp.estimateDesign.qpproachNumber">Qpproach Number</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="complexity">
+            <div class="d-flex">
+              <span jhiTranslate="mybujiApp.estimateDesign.complexity">Complexity</span>
+              <fa-icon class="p-1" *ngIf="!currentSearch" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="workrequest.projectId">
+            <div class="d-flex">
+              <span jhiTranslate="mybujiApp.estimateDesign.workrequest">Workrequest</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="elementtypes.element">
+            <div class="d-flex">
+              <span jhiTranslate="mybujiApp.estimateDesign.elementtypes">Elementtypes</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let estimateDesign of estimateDesigns; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/estimate-design', estimateDesign.id, 'view']">{{ estimateDesign.id }}</a>
+          </td>
+          <td>{{ estimateDesign.qpproachNumber }}</td>
+          <td jhiTranslate="{{ 'mybujiApp.Complexity.' + estimateDesign.complexity }}">{{ estimateDesign.complexity }}</td>
+          <td>
+            <div *ngIf="estimateDesign.workrequest">
+              <a [routerLink]="['/work-request', estimateDesign.workrequest.id, 'view']">{{ estimateDesign.workrequest.projectId }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="estimateDesign.elementtypes">
+              <a [routerLink]="['/element-types', estimateDesign.elementtypes.id, 'view']">{{ estimateDesign.elementtypes.element }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/estimate-design', estimateDesign.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/estimate-design', estimateDesign.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(estimateDesign)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="estimateDesigns && estimateDesigns.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

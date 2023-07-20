@@ -1,0 +1,29 @@
+{
+  "mybujiApp": {
+    "estimateBasis": {
+      "home": {
+        "title": "Estimate Bases",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Estimate Basis",
+        "createOrEditLabel": "Create or edit a Estimate Basis",
+        "search": "Search for Estimate Basis",
+        "notFound": "No Estimate Bases found"
+      },
+      "created": "A new Estimate Basis is created with identifier {{ param }}",
+      "updated": "A Estimate Basis is updated with identifier {{ param }}",
+      "deleted": "A Estimate Basis is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Estimate Basis {{ id }}?"
+      },
+      "detail": {
+        "title": "Estimate Basis"
+      },
+      "id": "ID",
+      "subsystemId": "Subsystem Id",
+      "basisOfEstimate": "Basis Of Estimate",
+      "assumptions": "Assumptions",
+      "lastUpdate": "Last Update",
+      "workrequest": "Workrequest"
+    }
+  }
+}

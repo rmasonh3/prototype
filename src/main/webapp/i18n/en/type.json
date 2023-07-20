@@ -1,0 +1,10 @@
+{
+  "mybujiApp": {
+    "Type": {
+      "null": "",
+      "New": "New",
+      "Modify": "Modify",
+      "Regen": "Regen"
+    }
+  }
+}

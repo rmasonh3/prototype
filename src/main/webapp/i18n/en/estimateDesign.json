@@ -1,0 +1,28 @@
+{
+  "mybujiApp": {
+    "estimateDesign": {
+      "home": {
+        "title": "Estimate Designs",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Estimate Design",
+        "createOrEditLabel": "Create or edit a Estimate Design",
+        "search": "Search for Estimate Design",
+        "notFound": "No Estimate Designs found"
+      },
+      "created": "A new Estimate Design is created with identifier {{ param }}",
+      "updated": "A Estimate Design is updated with identifier {{ param }}",
+      "deleted": "A Estimate Design is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Estimate Design {{ id }}?"
+      },
+      "detail": {
+        "title": "Estimate Design"
+      },
+      "id": "ID",
+      "qpproachNumber": "Qpproach Number",
+      "complexity": "Complexity",
+      "workrequest": "Workrequest",
+      "elementtypes": "Elementtypes"
+    }
+  }
+}

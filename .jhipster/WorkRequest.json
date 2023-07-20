@@ -1,0 +1,68 @@
+{
+  "applications": "*",
+  "changelogDate": "20230720190654",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "work_request",
+  "fields": [
+    {
+      "fieldName": "projectId",
+      "fieldType": "String",
+      "fieldValidateRules": ["unique", "required"]
+    },
+    {
+      "fieldName": "workRequest",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "workRequestDescription",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "workRwquestPhase",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "startDate",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "endDate",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "ProjectStatus",
+      "fieldTypeJavadoc": "Enum Project Status",
+      "fieldValues": "Pending,InProgress,OnHold,Completed,Canceled"
+    },
+    {
+      "fieldName": "design",
+      "fieldType": "DesignStatus",
+      "fieldTypeJavadoc": "Enum Design Status",
+      "fieldValues": "Pending,InProgress,OnHold,Completed,Canceled"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "Entity Work Request",
+  "jpaMetamodelFiltering": false,
+  "name": "WorkRequest",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "employeeId",
+      "otherEntityName": "employee",
+      "otherEntityRelationshipName": "workrequest",
+      "relationshipName": "employee",
+      "relationshipType": "one-to-many",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "serviceClass"
+}

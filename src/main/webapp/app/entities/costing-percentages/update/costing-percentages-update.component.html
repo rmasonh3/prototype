@@ -1,0 +1,198 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-costing-percentages-heading"
+        data-cy="CostingPercentagesCreateUpdateHeading"
+        jhiTranslate="mybujiApp.costingPercentages.home.createOrEditLabel"
+      >
+        Create or edit a Costing Percentages
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="mybujiApp.costingPercentages.costingSystem" for="field_costingSystem"
+            >Costing System</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="costingSystem"
+            id="field_costingSystem"
+            data-cy="costingSystem"
+            formControlName="costingSystem"
+          />
+          <div
+            *ngIf="
+              editForm.get('costingSystem')!.invalid && (editForm.get('costingSystem')!.dirty || editForm.get('costingSystem')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('costingSystem')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('costingSystem')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="mybujiApp.costingPercentages.costingQual" for="field_costingQual">Costing Qual</label>
+          <input
+            type="number"
+            class="form-control"
+            name="costingQual"
+            id="field_costingQual"
+            data-cy="costingQual"
+            formControlName="costingQual"
+          />
+          <div *ngIf="editForm.get('costingQual')!.invalid && (editForm.get('costingQual')!.dirty || editForm.get('costingQual')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('costingQual')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('costingQual')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="mybujiApp.costingPercentages.costingImp" for="field_costingImp">Costing Imp</label>
+          <input
+            type="number"
+            class="form-control"
+            name="costingImp"
+            id="field_costingImp"
+            data-cy="costingImp"
+            formControlName="costingImp"
+          />
+          <div *ngIf="editForm.get('costingImp')!.invalid && (editForm.get('costingImp')!.dirty || editForm.get('costingImp')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('costingImp')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('costingImp')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="mybujiApp.costingPercentages.costingPostImp" for="field_costingPostImp"
+            >Costing Post Imp</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="costingPostImp"
+            id="field_costingPostImp"
+            data-cy="costingPostImp"
+            formControlName="costingPostImp"
+          />
+          <div
+            *ngIf="
+              editForm.get('costingPostImp')!.invalid && (editForm.get('costingPostImp')!.dirty || editForm.get('costingPostImp')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('costingPostImp')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('costingPostImp')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="mybujiApp.costingPercentages.active" for="field_active">Active</label>
+          <input type="checkbox" class="form-check" name="active" id="field_active" data-cy="active" formControlName="active" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="mybujiApp.costingPercentages.dateAdded" for="field_dateAdded">Date Added</label>
+          <div class="d-flex">
+            <input
+              id="field_dateAdded"
+              data-cy="dateAdded"
+              type="datetime-local"
+              class="form-control"
+              name="dateAdded"
+              formControlName="dateAdded"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('dateAdded')!.invalid && (editForm.get('dateAdded')!.dirty || editForm.get('dateAdded')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('dateAdded')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('dateAdded')?.errors?.datetimelocal"
+              jhiTranslate="entity.validation.datetimelocal"
+            >
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

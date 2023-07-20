@@ -1,0 +1,70 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="workInfo">
+      <h2 data-cy="workInfoDetailsHeading"><span jhiTranslate="mybujiApp.workInfo.detail.title">Work Info</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ workInfo.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="mybujiApp.workInfo.scopeAct">Scope Act</span></dt>
+        <dd>
+          <span>{{ workInfo.scopeAct }}</span>
+        </dd>
+        <dt><span jhiTranslate="mybujiApp.workInfo.designAct">Design Act</span></dt>
+        <dd>
+          <span>{{ workInfo.designAct }}</span>
+        </dd>
+        <dt><span jhiTranslate="mybujiApp.workInfo.codeAct">Code Act</span></dt>
+        <dd>
+          <span>{{ workInfo.codeAct }}</span>
+        </dd>
+        <dt><span jhiTranslate="mybujiApp.workInfo.syst1Act">Syst 1 Act</span></dt>
+        <dd>
+          <span>{{ workInfo.syst1Act }}</span>
+        </dd>
+        <dt><span jhiTranslate="mybujiApp.workInfo.syst2Act">Syst 2 Act</span></dt>
+        <dd>
+          <span>{{ workInfo.syst2Act }}</span>
+        </dd>
+        <dt><span jhiTranslate="mybujiApp.workInfo.qualAct">Qual Act</span></dt>
+        <dd>
+          <span>{{ workInfo.qualAct }}</span>
+        </dd>
+        <dt><span jhiTranslate="mybujiApp.workInfo.impAct">Imp Act</span></dt>
+        <dd>
+          <span>{{ workInfo.impAct }}</span>
+        </dd>
+        <dt><span jhiTranslate="mybujiApp.workInfo.postImpAct">Post Imp Act</span></dt>
+        <dd>
+          <span>{{ workInfo.postImpAct }}</span>
+        </dd>
+        <dt><span jhiTranslate="mybujiApp.workInfo.totalAct">Total Act</span></dt>
+        <dd>
+          <span>{{ workInfo.totalAct }}</span>
+        </dd>
+        <dt><span jhiTranslate="mybujiApp.workInfo.workrequest">Workrequest</span></dt>
+        <dd>
+          <div *ngIf="workInfo.workrequest">
+            <a [routerLink]="['/work-request', workInfo.workrequest.id, 'view']">{{ workInfo.workrequest.projectId }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/work-info', workInfo.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

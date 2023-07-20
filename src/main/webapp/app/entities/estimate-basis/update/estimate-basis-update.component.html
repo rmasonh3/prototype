@@ -1,0 +1,172 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-estimate-basis-heading"
+        data-cy="EstimateBasisCreateUpdateHeading"
+        jhiTranslate="mybujiApp.estimateBasis.home.createOrEditLabel"
+      >
+        Create or edit a Estimate Basis
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="mybujiApp.estimateBasis.subsystemId" for="field_subsystemId">Subsystem Id</label>
+          <input
+            type="number"
+            class="form-control"
+            name="subsystemId"
+            id="field_subsystemId"
+            data-cy="subsystemId"
+            formControlName="subsystemId"
+          />
+          <div *ngIf="editForm.get('subsystemId')!.invalid && (editForm.get('subsystemId')!.dirty || editForm.get('subsystemId')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('subsystemId')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('subsystemId')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="mybujiApp.estimateBasis.basisOfEstimate" for="field_basisOfEstimate"
+            >Basis Of Estimate</label
+          >
+          <textarea
+            class="form-control"
+            name="basisOfEstimate"
+            id="field_basisOfEstimate"
+            data-cy="basisOfEstimate"
+            formControlName="basisOfEstimate"
+          ></textarea>
+          <div
+            *ngIf="
+              editForm.get('basisOfEstimate')!.invalid &&
+              (editForm.get('basisOfEstimate')!.dirty || editForm.get('basisOfEstimate')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('basisOfEstimate')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="mybujiApp.estimateBasis.assumptions" for="field_assumptions">Assumptions</label>
+          <textarea
+            class="form-control"
+            name="assumptions"
+            id="field_assumptions"
+            data-cy="assumptions"
+            formControlName="assumptions"
+          ></textarea>
+          <div *ngIf="editForm.get('assumptions')!.invalid && (editForm.get('assumptions')!.dirty || editForm.get('assumptions')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('assumptions')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="mybujiApp.estimateBasis.lastUpdate" for="field_lastUpdate">Last Update</label>
+          <div class="d-flex">
+            <input
+              id="field_lastUpdate"
+              data-cy="lastUpdate"
+              type="datetime-local"
+              class="form-control"
+              name="lastUpdate"
+              formControlName="lastUpdate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('lastUpdate')!.invalid && (editForm.get('lastUpdate')!.dirty || editForm.get('lastUpdate')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('lastUpdate')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('lastUpdate')?.errors?.datetimelocal"
+              jhiTranslate="entity.validation.datetimelocal"
+            >
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="mybujiApp.estimateBasis.workrequest" for="field_workrequest">Workrequest</label>
+          <select
+            class="form-control"
+            id="field_workrequest"
+            data-cy="workrequest"
+            name="workrequest"
+            formControlName="workrequest"
+            [compareWith]="compareWorkRequest"
+          >
+            <option *ngIf="!editForm.get('workrequest')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="workRequestOption" *ngFor="let workRequestOption of workRequestsSharedCollection">
+              {{ workRequestOption.projectId }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="editForm.get(['workrequest'])!.invalid && (editForm.get(['workrequest'])!.dirty || editForm.get(['workrequest'])!.touched)"
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['workrequest'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

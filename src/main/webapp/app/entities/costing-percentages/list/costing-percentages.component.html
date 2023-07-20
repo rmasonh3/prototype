@@ -1,0 +1,149 @@
+<div>
+  <h2 id="page-heading" data-cy="CostingPercentagesHeading">
+    <span jhiTranslate="mybujiApp.costingPercentages.home.title">Costing Percentages</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="mybujiApp.costingPercentages.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-costing-percentages"
+        [routerLink]="['/costing-percentages/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span class="hidden-sm-down" jhiTranslate="mybujiApp.costingPercentages.home.createLabel"> Create a new Costing Percentages </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <form name="searchForm" class="row row-cols-sm-auto align-items-center">
+    <div class="col-sm-12">
+      <div class="input-group w-100 mt-3">
+        <label class="visually-hidden" for="currentSearch" jhiTranslate="mybujiApp.costingPercentages.home.search"
+          >Search for Costing Percentages</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="currentSearch"
+          id="currentSearch"
+          name="currentSearch"
+          placeholder="{{ 'mybujiApp.costingPercentages.home.search' | translate }}"
+        />
+
+        <button class="btn btn-info" (click)="search(currentSearch)">
+          <fa-icon icon="search"></fa-icon>
+        </button>
+
+        <button class="btn btn-danger" (click)="search('')" *ngIf="currentSearch">
+          <fa-icon icon="trash-alt"></fa-icon>
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="costingPercentages?.length === 0">
+    <span jhiTranslate="mybujiApp.costingPercentages.home.notFound">No Costing Percentages found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="costingPercentages && costingPercentages.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="costingSystem">
+            <div class="d-flex">
+              <span jhiTranslate="mybujiApp.costingPercentages.costingSystem">Costing System</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="costingQual">
+            <div class="d-flex">
+              <span jhiTranslate="mybujiApp.costingPercentages.costingQual">Costing Qual</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="costingImp">
+            <div class="d-flex">
+              <span jhiTranslate="mybujiApp.costingPercentages.costingImp">Costing Imp</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="costingPostImp">
+            <div class="d-flex">
+              <span jhiTranslate="mybujiApp.costingPercentages.costingPostImp">Costing Post Imp</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="active">
+            <div class="d-flex">
+              <span jhiTranslate="mybujiApp.costingPercentages.active">Active</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dateAdded">
+            <div class="d-flex">
+              <span jhiTranslate="mybujiApp.costingPercentages.dateAdded">Date Added</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let costingPercentages of costingPercentages; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/costing-percentages', costingPercentages.id, 'view']">{{ costingPercentages.id }}</a>
+          </td>
+          <td>{{ costingPercentages.costingSystem }}</td>
+          <td>{{ costingPercentages.costingQual }}</td>
+          <td>{{ costingPercentages.costingImp }}</td>
+          <td>{{ costingPercentages.costingPostImp }}</td>
+          <td>{{ costingPercentages.active }}</td>
+          <td>{{ costingPercentages.dateAdded | formatMediumDatetime }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/costing-percentages', costingPercentages.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/costing-percentages', costingPercentages.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(costingPercentages)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

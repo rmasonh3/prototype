@@ -1,0 +1,33 @@
+{
+  "mybujiApp": {
+    "workRequest": {
+      "home": {
+        "title": "Work Requests",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Work Request",
+        "createOrEditLabel": "Create or edit a Work Request",
+        "search": "Search for Work Request",
+        "notFound": "No Work Requests found"
+      },
+      "created": "A new Work Request is created with identifier {{ param }}",
+      "updated": "A Work Request is updated with identifier {{ param }}",
+      "deleted": "A Work Request is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Work Request {{ id }}?"
+      },
+      "detail": {
+        "title": "Work Request"
+      },
+      "id": "ID",
+      "projectId": "Project Id",
+      "workRequest": "Work Request",
+      "workRequestDescription": "Work Request Description",
+      "workRwquestPhase": "Work Rwquest Phase",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "status": "Status",
+      "design": "Design",
+      "employee": "Employee"
+    }
+  }
+}

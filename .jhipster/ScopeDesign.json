@@ -1,0 +1,58 @@
+{
+  "applications": "*",
+  "changelogDate": "20230720190649",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "scope_design",
+  "fields": [
+    {
+      "fieldName": "designEstimate",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "codeEstimate",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "syst1Estimate",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "syst2Estimate",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "qualEstimate",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "impEstimate",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "postImpEstimate",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "totalHours",
+      "fieldType": "Float"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "Entity Scope Design",
+  "jpaMetamodelFiltering": false,
+  "name": "ScopeDesign",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "projectId",
+      "otherEntityName": "workRequest",
+      "ownerSide": true,
+      "relationshipName": "workrequest",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "serviceClass"
+}

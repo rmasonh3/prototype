@@ -1,0 +1,12 @@
+{
+  "mybujiApp": {
+    "ProjectStatus": {
+      "null": "",
+      "Pending": "Pending",
+      "InProgress": "InProgress",
+      "OnHold": "OnHold",
+      "Completed": "Completed",
+      "Canceled": "Canceled"
+    }
+  }
+}

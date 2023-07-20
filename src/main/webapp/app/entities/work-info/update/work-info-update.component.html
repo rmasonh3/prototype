@@ -1,0 +1,250 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-work-info-heading" data-cy="WorkInfoCreateUpdateHeading" jhiTranslate="mybujiApp.workInfo.home.createOrEditLabel">
+        Create or edit a Work Info
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="mybujiApp.workInfo.scopeAct" for="field_scopeAct">Scope Act</label>
+          <input type="number" class="form-control" name="scopeAct" id="field_scopeAct" data-cy="scopeAct" formControlName="scopeAct" />
+          <div *ngIf="editForm.get('scopeAct')!.invalid && (editForm.get('scopeAct')!.dirty || editForm.get('scopeAct')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('scopeAct')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('scopeAct')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="mybujiApp.workInfo.designAct" for="field_designAct">Design Act</label>
+          <input type="number" class="form-control" name="designAct" id="field_designAct" data-cy="designAct" formControlName="designAct" />
+          <div *ngIf="editForm.get('designAct')!.invalid && (editForm.get('designAct')!.dirty || editForm.get('designAct')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('designAct')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('designAct')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="mybujiApp.workInfo.codeAct" for="field_codeAct">Code Act</label>
+          <input type="number" class="form-control" name="codeAct" id="field_codeAct" data-cy="codeAct" formControlName="codeAct" />
+          <div *ngIf="editForm.get('codeAct')!.invalid && (editForm.get('codeAct')!.dirty || editForm.get('codeAct')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('codeAct')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('codeAct')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="mybujiApp.workInfo.syst1Act" for="field_syst1Act">Syst 1 Act</label>
+          <input type="number" class="form-control" name="syst1Act" id="field_syst1Act" data-cy="syst1Act" formControlName="syst1Act" />
+          <div *ngIf="editForm.get('syst1Act')!.invalid && (editForm.get('syst1Act')!.dirty || editForm.get('syst1Act')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('syst1Act')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('syst1Act')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="mybujiApp.workInfo.syst2Act" for="field_syst2Act">Syst 2 Act</label>
+          <input type="number" class="form-control" name="syst2Act" id="field_syst2Act" data-cy="syst2Act" formControlName="syst2Act" />
+          <div *ngIf="editForm.get('syst2Act')!.invalid && (editForm.get('syst2Act')!.dirty || editForm.get('syst2Act')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('syst2Act')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('syst2Act')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="mybujiApp.workInfo.qualAct" for="field_qualAct">Qual Act</label>
+          <input type="number" class="form-control" name="qualAct" id="field_qualAct" data-cy="qualAct" formControlName="qualAct" />
+          <div *ngIf="editForm.get('qualAct')!.invalid && (editForm.get('qualAct')!.dirty || editForm.get('qualAct')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('qualAct')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('qualAct')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="mybujiApp.workInfo.impAct" for="field_impAct">Imp Act</label>
+          <input type="number" class="form-control" name="impAct" id="field_impAct" data-cy="impAct" formControlName="impAct" />
+          <div *ngIf="editForm.get('impAct')!.invalid && (editForm.get('impAct')!.dirty || editForm.get('impAct')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('impAct')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('impAct')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="mybujiApp.workInfo.postImpAct" for="field_postImpAct">Post Imp Act</label>
+          <input
+            type="number"
+            class="form-control"
+            name="postImpAct"
+            id="field_postImpAct"
+            data-cy="postImpAct"
+            formControlName="postImpAct"
+          />
+          <div *ngIf="editForm.get('postImpAct')!.invalid && (editForm.get('postImpAct')!.dirty || editForm.get('postImpAct')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('postImpAct')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('postImpAct')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="mybujiApp.workInfo.totalAct" for="field_totalAct">Total Act</label>
+          <input type="number" class="form-control" name="totalAct" id="field_totalAct" data-cy="totalAct" formControlName="totalAct" />
+          <div *ngIf="editForm.get('totalAct')!.invalid && (editForm.get('totalAct')!.dirty || editForm.get('totalAct')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('totalAct')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('totalAct')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="mybujiApp.workInfo.workrequest" for="field_workrequest">Workrequest</label>
+          <select
+            class="form-control"
+            id="field_workrequest"
+            data-cy="workrequest"
+            name="workrequest"
+            formControlName="workrequest"
+            [compareWith]="compareWorkRequest"
+          >
+            <option *ngIf="!editForm.get('workrequest')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="workRequestOption" *ngFor="let workRequestOption of workRequestsSharedCollection">
+              {{ workRequestOption.projectId }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="editForm.get(['workrequest'])!.invalid && (editForm.get(['workrequest'])!.dirty || editForm.get(['workrequest'])!.touched)"
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['workrequest'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

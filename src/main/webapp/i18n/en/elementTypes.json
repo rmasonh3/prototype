@@ -1,0 +1,26 @@
+{
+  "mybujiApp": {
+    "elementTypes": {
+      "home": {
+        "title": "Element Types",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Element Types",
+        "createOrEditLabel": "Create or edit a Element Types",
+        "search": "Search for Element Types",
+        "notFound": "No Element Types found"
+      },
+      "created": "A new Element Types is created with identifier {{ param }}",
+      "updated": "A Element Types is updated with identifier {{ param }}",
+      "deleted": "A Element Types is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Element Types {{ id }}?"
+      },
+      "detail": {
+        "title": "Element Types"
+      },
+      "id": "ID",
+      "element": "Element",
+      "type": "Type"
+    }
+  }
+}
